@@ -18,12 +18,11 @@ const game = () => {
     };
 
 
-
+    const options = document.querySelectorAll('.options button');
+    const playerHand = document.querySelector('.player');
+    const computerHand = document.querySelector('.computer');
     //play march
     const playMarch = () => {
-     const options = document.querySelectorAll('.options button');
-     const playerHand = document.querySelector('.player');
-     const computerHand = document.querySelector('.computer');
 
      options.forEach( option => {
        
@@ -58,11 +57,11 @@ const game = () => {
     };
 
 
-
+    const win = document.querySelector('.winner');
  
     //compare of hands
     const compareHand = (player,computer) => {
-      const win = document.querySelector('.winner');
+     
 
       if(player === computer){
         
@@ -120,9 +119,16 @@ const game = () => {
       const computerScore = document.querySelector('.computer-score p');
       const result = document.querySelector('.result')
 
-      playerScore.textContent = pscore;
-      computerScore.textContent = cscore;
+
+          playerScore.textContent = pscore;
+          computerScore.textContent = cscore;
+
+     
       winner(pscore,cscore);
+      console.log(pscore,cscore);
+
+
+
 
       //reloading score
        const reloaded = () => {
@@ -130,9 +136,17 @@ const game = () => {
 
       reload.addEventListener('click', () => {
 
+       pscore = 0;
+       cscore = 0;
         playerScore.textContent= 0;
         computerScore.textContent = 0;
         march.style.pointerEvents = 'all';
+
+        playerHand.src = `./img/rock.png`;
+        computerHand.src = `./img/rock.png`;
+
+        win.textContent = 'Choose an option'; 
+
 
         if(result.classList.contains('win')){
         result.classList.remove('win');
@@ -147,8 +161,8 @@ const game = () => {
 
       })
     }
-
     reloaded();
+
 
     };
 
@@ -176,6 +190,7 @@ const game = () => {
     //decleration of function
     page();
     playMarch();
+
 };
 
 game();
